@@ -26,26 +26,23 @@ public class TestBase {
 	public void setUp() throws IOException {
 		
 		if(driver==null) {
-			
 			fis = new FileInputStream(System.getProperty("user.dir")+ "/src/test/resources/properties/config.properties");
 			config.load(fis);
 			fis = new FileInputStream(System.getProperty("user.dir")+ "/src/test/resources/properties/or.properties");
 			or.load(fis);
-			
-			
  		}
 		
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--disable-site-isolation-trials");
 		options.addArguments("--start-maximized");
-		// disable the microphone popup
+//		disable the microphone popup
 		Map<String, Object> prefs = new HashMap<>();
 		prefs.put("profile.default_content_setting_values.media_stream_mic", 2);
 		options.setExperimentalOption("prefs", prefs);
 
 //		options.addArguments("--headless");
-		// options.addArguments("--window-size=1920,1080");
+//		options.addArguments("--window-size=1920,1080");
 		driver = new ChromeDriver(options);
 		 
 		
